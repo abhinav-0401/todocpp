@@ -1,21 +1,25 @@
 #include <string>
-#include <cstdint>
+#include <vector>
 
-using std::uint32_t;
-using std::string;
+struct Todo {
+    std::string name{};
+    bool done = false;
+    unsigned int id{};
 
-class Todo {
+    Todo(std::string name) {
+        this->name = name;
+    }
+};
 
-    private:
-        string name{};
-        uint32_t id{};
+class Project {
+    std::string name{};
+    unsigned int id{};
+    std::vector<Todo> todo_list;
 
-    public:
-        Todo(string name, uint32_t id_value);
-
-        void set_name(string value);
-        string get_name();
-
-        void set_id(uint32_t id_value);
-        uint32_t get_id();
+public:
+    Project(std::string proj_name, unsigned int proj_id);
+    void add_todo(std::string todo_name);
+    void delete_todo(unsigned int todo_id);
+    void toggle_todo(unsigned int todo_id);
+    unsigned int get_id();
 };

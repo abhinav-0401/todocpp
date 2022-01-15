@@ -1,25 +1,30 @@
 #include "./include/todo.h"
+#include <vector>
 #include <string>
-#include <cstdint>
 
-Todo::Todo(std::string name, std::uint32_t id_value) {
-    this->name = name;
-    this->id = id_value;
+Project::Project(std::string proj_name, unsigned int proj_id) {
+    this->name = proj_name;
+    this->id = proj_id;
 }
 
-void Todo::set_name(string value) {
-    this->name = value;
+void Project::add_todo(std::string todo_name) {
+    Todo new_todo(todo_name);
+    this->todo_list.push_back(new_todo);
 }
 
-std::string Todo::get_name() {
-    return this->name;
+void Project::delete_todo(unsigned int todo_id) {
+    auto iterator{ this->todo_list.begin() + todo_id }; 
+    this->todo_list.erase(iterator);
 }
 
-void Todo::set_id(std::uint32_t id_value) {
-    this->id = id_value; 
+void Project::toggle_todo(unsigned int todo_id) {
+    for (auto& t : this->todo_list) {
+        if (t.id == todo_id) {
+            t.done = !t.done;
+        }
+    }
 }
 
-std::uint32_t Todo::get_id() {
+unsigned int Project::get_id() {
     return this->id;
 }
-
