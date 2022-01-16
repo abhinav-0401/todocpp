@@ -28,3 +28,7 @@ void Project::toggle_todo(unsigned int todo_id) {
 unsigned int Project::get_id() {
     return this->id;
 }
+
+std::vector<Todo> Project::get_todo_list() {
+    return this->todo_list;
+}

@@ -22,4 +22,5 @@ public:
     void delete_todo(unsigned int todo_id);
     void toggle_todo(unsigned int todo_id);
     unsigned int get_id();
+    std::vector<Todo> get_todo_list();
 };
